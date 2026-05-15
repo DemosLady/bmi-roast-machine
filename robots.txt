@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://demoslady.github.io/bmi-roast-machine/sitemap.xml
