@@ -10,25 +10,25 @@
 <meta name="keywords" content="BMI calculator, funny BMI, BMI roast, BMI insult, body mass index calculator, savage BMI, brutal BMI calculator, funny health tools">
 <meta name="author" content="demosaii">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://demoslady.github.io/bmi-roast-machine/">
+<link rel="canonical" href="https://bmi-roast-machine.vercel.app/">
 
 <!-- Open Graph -->
 <meta property="og:title" content="BMI Roast Machine — Get Your BMI. Get Destroyed.">
 <meta property="og:description" content="The world's most brutally honest BMI calculator. Calculate your BMI and receive a savage insult. You asked for it.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://demoslady.github.io/bmi-roast-machine/">
-<meta property="og:image" content="https://demoslady.github.io/bmi-roast-machine/og-image.png">
+<meta property="og:url" content="https://bmi-roast-machine.vercel.app/">
+<meta property="og:image" content="https://bmi-roast-machine.vercel.app/og-image.png">
 <meta property="og:site_name" content="BMI Roast Machine">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BMI Roast Machine — Get Your BMI. Get Destroyed.">
 <meta name="twitter:description" content="The most savage BMI calculator on the internet. Free. Brutal. Accurate-ish.">
-<meta name="twitter:image" content="https://demoslady.github.io/bmi-roast-machine/og-image.png">
+<meta name="twitter:image" content="https://bmi-roast-machine.vercel.app/og-image.png">
 
 <!-- Google AdSense -->
-<!-- Replace ca-pub-XXXXXXXXXXXXXXXX with your actual AdSense publisher ID -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+<!-- Replace ca-pub-7675527666098811 with your actual AdSense publisher ID -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7675527666098811" crossorigin="anonymous"></script>
 
 <!-- Structured Data -->
 <script type="application/ld+json">
@@ -37,7 +37,7 @@
   "@type": "WebApplication",
   "name": "BMI Roast Machine",
   "description": "A brutally honest BMI calculator that roasts you based on your results",
-  "url": "https://demoslady.github.io/bmi-roast-machine/",
+  "url": "https://bmi-roast-machine.vercel.app/",
   "applicationCategory": "HealthApplication",
   "operatingSystem": "Any",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
@@ -236,7 +236,7 @@ body{
 <!-- Ad Slot — Top -->
 <div class="ad-slot" id="ad-top">
   <!-- AdSense Auto Ad will fill here, or use manual ad unit: -->
-  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7675527666098811" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
   AD SPACE
 </div>
@@ -258,7 +258,7 @@ body{
 
 <!-- Ad Slot — Bottom -->
 <div class="ad-slot" id="ad-bottom">
-  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7675527666098811" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
   <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
   AD SPACE
 </div>
@@ -405,7 +405,7 @@ function showResult(bmi, cat, insult) {
 
   // Share links
   const text = `My BMI is ${bmi} (${catLabels[cat]}) 💀 "${insult}" — BMI Roast Machine`;
-  const url = 'https://demoslady.github.io/bmi-roast-machine/';
+  const url = 'https://bmi-roast-machine.vercel.app/';
   document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
   document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
 }
@@ -422,14 +422,14 @@ function reroll() {
 
   // Update share links
   const text = `My BMI is ${currentResult.bmi} (${catLabels[currentResult.cat]}) 💀 "${newInsult}" — BMI Roast Machine`;
-  const url = 'https://demoslady.github.io/bmi-roast-machine/';
+  const url = 'https://bmi-roast-machine.vercel.app/';
   document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
   document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
 }
 
 function copyResult() {
   if (!currentResult) return;
-  const text = `My BMI is ${currentResult.bmi} (${catLabels[currentResult.cat]}) 💀 "${currentResult.insult}" — BMI Roast Machine\nhttps://demoslady.github.io/bmi-roast-machine/`;
+  const text = `My BMI is ${currentResult.bmi} (${catLabels[currentResult.cat]}) 💀 "${currentResult.insult}" — BMI Roast Machine\nhttps://bmi-roast-machine.vercel.app/`;
   navigator.clipboard.writeText(text).then(() => {
     const btn = event.target;
     btn.textContent = '✅ COPIED';
