@@ -27,4 +27,4 @@ This is a single `index.html` file. Just push to GitHub and enable Pages.
 MIT
 
 ---
-Made by [demosaii](https://instagram.com/demosaii.studio)
+Made by [demosaii](https://instagram.com/demosaii)
