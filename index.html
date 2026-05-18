@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="google-site-verification" content="ZJlyt461my6sWkS9zmjBV7lKFOZLxUwMZpJ2fxO4a9g" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Roast Machine — Calculate Your BMI, Get Destroyed</title>
+
+<!-- SEO Meta -->
+<meta name="description" content="The world's most brutally honest BMI calculator. Enter your weight and height, get your BMI score — and a savage roast you didn't ask for. Free, instant, no signup.">
+<meta name="keywords" content="BMI calculator, funny BMI, BMI roast, BMI insult, body mass index calculator, savage BMI, brutal BMI calculator, funny health tools">
+<meta name="author" content="demosaii">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://bmi-roast-machine.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="BMI Roast Machine — Get Your BMI. Get Destroyed.">
+<meta property="og:description" content="The world's most brutally honest BMI calculator. Calculate your BMI and receive a savage insult. You asked for it.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bmi-roast-machine.vercel.app/">
+<meta property="og:image" content="https://bmi-roast-machine.vercel.app/og-image.png">
+<meta property="og:site_name" content="BMI Roast Machine">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMI Roast Machine — Get Your BMI. Get Destroyed.">
+<meta name="twitter:description" content="The most savage BMI calculator on the internet. Free. Brutal. Accurate-ish.">
+<meta name="twitter:image" content="https://bmi-roast-machine.vercel.app/og-image.png">
+
+<!-- Google AdSense -->
+<!-- Replace ca-pub-7675527666098811 with your actual AdSense publisher ID -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7675527666098811" crossorigin="anonymous"></script>
+
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "BMI Roast Machine",
+  "description": "A brutally honest BMI calculator that roasts you based on your results",
+  "url": "https://bmi-roast-machine.vercel.app/",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+}
+</script>
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#0a0a0a;--fg:#e0e0e0;--red:#ff0040;--orange:#ff6b00;
+  --cyan:#00d4ff;--green:#39ff14;--dark:#111;--border:#222;
+}
+
+body{
+  min-height:100vh;background:var(--bg);color:var(--fg);
+  font-family:'Space Mono',monospace;display:flex;flex-direction:column;
+  align-items:center;padding:40px 20px;overflow-x:hidden;position:relative;
+}
+
+/* Scanline */
+.scanline{
+  position:fixed;top:0;left:0;right:0;height:4px;
+  background:rgba(255,255,255,.03);animation:scanline 4s linear infinite;
+  pointer-events:none;z-index:999;
+}
+
+/* Header */
+.header{text-align:center;margin-bottom:40px}
+.title{
+  font-family:'Dela Gothic One',sans-serif;font-size:clamp(60px,12vw,100px);
+  line-height:.9;color:var(--red);letter-spacing:-3px;
+  text-shadow:4px 4px 0 var(--orange),-2px -2px 0 var(--cyan);
+}
+.subtitle{
+  font-family:'Dela Gothic One',sans-serif;font-size:clamp(18px,4vw,28px);
+  margin-top:8px;color:#fff;letter-spacing:8px;text-transform:uppercase;
+}
+.tagline{font-size:13px;color:#666;margin-top:12px;letter-spacing:2px;text-transform:uppercase}
+
+/* Toggle */
+.toggle-row{display:flex;margin-bottom:30px;border:2px solid #333}
+.toggle-btn{
+  font-family:'Space Mono',monospace;font-size:13px;padding:10px 24px;
+  background:transparent;color:#555;border:none;cursor:pointer;
+  letter-spacing:2px;transition:all .2s;
+}
+.toggle-btn.active{background:var(--red);color:#fff}
+
+/* Inputs */
+.input-area{display:flex;gap:16px;width:100%;max-width:440px;margin-bottom:24px;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;flex:1;min-width:120px}
+.field label{font-size:11px;color:var(--red);letter-spacing:3px;margin-bottom:6px;font-weight:700}
+.field input{
+  font-family:'Space Mono',monospace;font-size:22px;padding:14px 16px;
+  background:var(--dark);border:2px solid var(--border);color:#fff;
+  outline:none;transition:border-color .2s;width:100%;
+}
+.field input:focus{border-color:var(--red)}
+.field input::placeholder{color:#333}
+.imperial-row{display:flex;gap:12px;flex:1}
+.imperial-row .field{flex:1}
+
+/* Calculate Button */
+.calc-btn{
+  font-family:'Dela Gothic One',sans-serif;font-size:18px;padding:18px 48px;
+  background:var(--red);color:#fff;border:none;cursor:pointer;letter-spacing:3px;
+  margin-bottom:16px;transition:all .15s;position:relative;overflow:hidden;
+}
+.calc-btn:hover{transform:scale(1.03);filter:brightness(1.2)}
+.calc-btn:active{transform:scale(.97)}
+
+/* Ad slot top */
+.ad-slot{
+  width:100%;max-width:440px;min-height:90px;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center;
+  background:#0d0d0d;border:1px dashed #222;color:#222;font-size:11px;letter-spacing:2px;
+}
+
+/* Result */
+.result-box{
+  width:100%;max-width:440px;background:#0f0f0f;border:3px solid;
+  padding:28px 24px;margin-bottom:24px;display:none;
+}
+.result-box.show{display:block;animation:slideUp .5s ease}
+.result-box.shake{animation:shake .6s ease}
+
+.bmi-row{display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.bmi-number{font-family:'Dela Gothic One',sans-serif;font-size:52px;color:#fff;line-height:1}
+.category-badge{
+  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+  padding:6px 14px;letter-spacing:2px;animation:pulse 2s ease infinite;
+}
+
+.insult-text{
+  font-size:16px;line-height:1.7;color:#ccc;font-style:italic;
+  margin:0 0 20px;border-left:3px solid var(--red);padding-left:16px;
+  animation:flicker 3s infinite;
+}
+
+.reroll-btn{
+  font-family:'Space Mono',monospace;font-size:12px;padding:10px 20px;
+  background:transparent;color:var(--orange);border:2px solid var(--orange);
+  cursor:pointer;letter-spacing:2px;transition:all .2s;
+}
+.reroll-btn:hover{background:var(--orange);color:#000}
+
+/* Share Section */
+.share-row{
+  display:flex;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid #1a1a1a;
+  flex-wrap:wrap;
+}
+.share-btn{
+  font-family:'Space Mono',monospace;font-size:11px;padding:8px 14px;
+  background:#1a1a1a;color:#888;border:1px solid #333;cursor:pointer;
+  letter-spacing:1px;transition:all .2s;text-decoration:none;
+}
+.share-btn:hover{color:#fff;border-color:#fff}
+
+/* Glitch overlay */
+.glitch-overlay{
+  position:fixed;inset:0;background:rgba(255,0,64,.1);
+  animation:glitchIn .4s ease;pointer-events:none;z-index:998;mix-blend-mode:screen;
+  display:none;
+}
+.glitch-overlay.active{display:block}
+
+/* Disclaimer */
+.disclaimer{font-size:11px;color:#333;text-align:center;max-width:360px;line-height:1.6;margin-top:8px}
+
+/* Animations */
+@keyframes shake{
+  0%,100%{transform:translate(0)}
+  10%{transform:translate(-8px,-4px)rotate(-1deg)}
+  20%{transform:translate(6px,3px)rotate(1deg)}
+  30%{transform:translate(-5px,2px)rotate(-.5deg)}
+  40%{transform:translate(4px,-3px)rotate(.5deg)}
+  50%{transform:translate(-3px,1px)}60%{transform:translate(2px,-1px)}
+  70%{transform:translate(-1px,1px)}80%{transform:translate(1px,-1px)}
+  90%{transform:translate(-1px,0)}
+}
+@keyframes glitchIn{
+  0%{clip-path:inset(0 100% 0 0);filter:hue-rotate(90deg)}
+  30%{clip-path:inset(0 40% 0 0);filter:hue-rotate(180deg)}
+  50%{clip-path:inset(30% 0 40% 0);filter:hue-rotate(270deg)}
+  70%{clip-path:inset(0 0 0 20%);filter:hue-rotate(360deg)}
+  100%{clip-path:inset(0);filter:hue-rotate(0)}
+}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes flicker{0%,100%{opacity:1}92%{opacity:1}93%{opacity:.3}94%{opacity:1}96%{opacity:.7}97%{opacity:1}}
+@keyframes scanline{0%{top:-10%}100%{top:110%}}
+@keyframes pulse{0%,100%{text-shadow:0 0 10px currentColor}50%{text-shadow:0 0 25px currentColor,0 0 50px currentColor}}
+
+/* Mobile */
+@media(max-width:480px){
+  body{padding:24px 12px}
+  .title{letter-spacing:-1px}
+  .input-area{flex-direction:column}
+  .imperial-row{flex-direction:row}
+  .calc-btn{width:100%;padding:16px}
+  .bmi-number{font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="scanline"></div>
+<div class="glitch-overlay" id="glitch"></div>
+
+<!-- Header -->
+<div class="header">
+  <h1 class="title">BMI</h1>
+  <h2 class="subtitle">ROAST MACHINE</h2>
+  <p class="tagline">Enter your stats. Get destroyed.</p>
+</div>
+
+<!-- Unit Toggle -->
+<div class="toggle-row">
+  <button class="toggle-btn active" id="btn-metric" onclick="setUnit('metric')">KG / CM</button>
+  <button class="toggle-btn" id="btn-imperial" onclick="setUnit('imperial')">LBS / FT</button>
+</div>
+
+<!-- Inputs -->
+<div class="input-area" id="input-area">
+  <!-- Filled by JS -->
+</div>
+
+<!-- Calculate -->
+<button class="calc-btn" onclick="calculate()">DESTROY ME</button>
+
+<!-- Ad Slot — Top -->
+<div class="ad-slot" id="ad-top">
+  <!-- AdSense Auto Ad will fill here, or use manual ad unit: -->
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7675527666098811" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  AD SPACE
+</div>
+
+<!-- Result -->
+<div class="result-box" id="result">
+  <div class="bmi-row">
+    <span class="bmi-number" id="bmi-num"></span>
+    <span class="category-badge" id="cat-badge"></span>
+  </div>
+  <p class="insult-text" id="insult"></p>
+  <button class="reroll-btn" onclick="reroll()">🎲 INSULT ME AGAIN</button>
+  <div class="share-row">
+    <a class="share-btn" id="share-tw" href="#" target="_blank" rel="noopener">𝕏 SHARE</a>
+    <button class="share-btn" onclick="copyResult()">📋 COPY</button>
+    <a class="share-btn" id="share-wa" href="#" target="_blank" rel="noopener">💬 WHATSAPP</a>
+  </div>
+</div>
+
+<!-- Ad Slot — Bottom -->
+<div class="ad-slot" id="ad-bottom">
+  <!-- <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7675527666098811" data-ad-slot="XXXXXXXXXX" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script> -->
+  AD SPACE
+</div>
+
+<!-- Disclaimer -->
+<p class="disclaimer">This is a joke. BMI is a flawed metric anyway. You're beautiful or whatever. 💀</p>
+<p class="disclaimer" style="margin-top:12px;color:#222">Made by demosaii</p>
+
+<script>
+const insults = {
+  underweight: [
+    "You're so thin, when you turn sideways you disappear. Eat a sandwich. Actually, eat twelve.",
+    "The wind called. It wants its rival back.",
+    "You don't have a shadow, you have a line.",
+    "Skeletons are jealous of your figure. That's not a compliment.",
+    "If you stood on a scale it would say 'ONE AT A TIME PLEASE' out of confusion.",
+    "You're built like a loading bar stuck at 15%.",
+    "Google Maps can't find you in satellite view.",
+  ],
+  normal: [
+    "Oh wow, you're... normal. How boring. Literally the most unremarkable achievement possible.",
+    "Congratulations, you're average. Your parents must be so... adequately proud.",
+    "Healthy BMI? Cool. You peaked at being medium. Frame that.",
+    "You're the human equivalent of room temperature water. Functional but nobody's excited.",
+    "Normal weight. The participation trophy of body metrics.",
+    "You're so average, your spirit animal is a beige Toyota Corolla.",
+    "Your BMI is normal. Your personality probably isn't, but that's not my department.",
+  ],
+  overweight: [
+    "Your BMI is like your browser tabs — you've got way too many open.",
+    "You're not fat, you're just... easier to see. From space.",
+    "The earth rotates slightly slower because of you. Science said that. Probably.",
+    "Your gravitational pull has its own Wikipedia page.",
+    "You don't need a seatbelt, you need a cargo strap.",
+    "When you step on grass, it files a complaint.",
+    "Airlines charge you for two seats and honestly? Fair.",
+  ],
+  obese: [
+    "Your BMI left the chat, called an Uber, and moved to another country.",
+    "Scientists want to study you. Not for health reasons — for physics.",
+    "Your scale doesn't show a number, it shows a cry-face emoji.",
+    "You have your own area code. And zip code. And time zone.",
+    "NASA called. They can see you from orbit and they're concerned.",
+    "When you sit around the house, you sit AROUND the house.",
+    "Your blood type is Nutella.",
+  ],
+};
+
+const catLabels = { underweight:'UNDERWEIGHT', normal:'NORMAL (boring)', overweight:'OVERWEIGHT', obese:'OBESE' };
+const catColors = { underweight:'#00d4ff', normal:'#39ff14', overweight:'#ff6b00', obese:'#ff0040' };
+
+let unit = 'metric';
+let currentResult = null;
+
+function setUnit(u) {
+  unit = u;
+  document.getElementById('btn-metric').classList.toggle('active', u==='metric');
+  document.getElementById('btn-imperial').classList.toggle('active', u==='imperial');
+  document.getElementById('result').classList.remove('show');
+  currentResult = null;
+  renderInputs();
+}
+
+function renderInputs() {
+  const area = document.getElementById('input-area');
+  if (unit === 'metric') {
+    area.innerHTML = `
+      <div class="field"><label>WEIGHT (kg)</label><input type="number" id="weight" placeholder="75"></div>
+      <div class="field"><label>HEIGHT (cm)</label><input type="number" id="height" placeholder="175"></div>`;
+  } else {
+    area.innerHTML = `
+      <div class="field"><label>WEIGHT (lbs)</label><input type="number" id="weight" placeholder="165"></div>
+      <div class="imperial-row">
+        <div class="field"><label>FEET</label><input type="number" id="feet" placeholder="5"></div>
+        <div class="field"><label>INCHES</label><input type="number" id="inches" placeholder="9"></div>
+      </div>`;
+  }
+  // Enter key triggers calculate
+  area.querySelectorAll('input').forEach(inp => {
+    inp.addEventListener('keydown', e => { if (e.key==='Enter') calculate(); });
+  });
+}
+
+function getCategory(bmi) {
+  if (bmi < 18.5) return 'underweight';
+  if (bmi < 25) return 'normal';
+  if (bmi < 30) return 'overweight';
+  return 'obese';
+}
+
+function pickInsult(cat, exclude) {
+  const pool = insults[cat];
+  let pick;
+  let tries = 0;
+  do { pick = pool[Math.floor(Math.random()*pool.length)]; tries++; }
+  while (pick === exclude && tries < 20);
+  return pick;
+}
+
+function calculate() {
+  let bmi;
+  const w = parseFloat(document.getElementById('weight')?.value);
+  if (!w) return;
+
+  if (unit === 'metric') {
+    const h = parseFloat(document.getElementById('height')?.value) / 100;
+    if (!h) return;
+    bmi = w / (h*h);
+  } else {
+    const ft = parseFloat(document.getElementById('feet')?.value) || 0;
+    const inc = parseFloat(document.getElementById('inches')?.value) || 0;
+    const totalIn = ft*12 + inc;
+    if (!totalIn) return;
+    bmi = (w / (totalIn*totalIn)) * 703;
+  }
+
+  const cat = getCategory(bmi);
+  const insult = pickInsult(cat, null);
+
+  // Glitch effect
+  const gl = document.getElementById('glitch');
+  gl.classList.add('active');
+  setTimeout(() => {
+    gl.classList.remove('active');
+    showResult(bmi.toFixed(1), cat, insult);
+  }, 400);
+}
+
+function showResult(bmi, cat, insult) {
+  currentResult = { bmi, cat, insult };
+  const box = document.getElementById('result');
+  box.style.borderColor = catColors[cat];
+  box.classList.remove('shake');
+  box.classList.add('show');
+  void box.offsetWidth; // force reflow
+
+  document.getElementById('bmi-num').textContent = bmi;
+  const badge = document.getElementById('cat-badge');
+  badge.textContent = catLabels[cat];
+  badge.style.background = catColors[cat];
+  badge.style.color = cat==='normal' ? '#000' : '#fff';
+
+  document.getElementById('insult').textContent = '"' + insult + '"';
+
+  // Share links
+  const text = `My BMI is ${bmi} (${catLabels[cat]}) 💀 "${insult}" — BMI Roast Machine`;
+  const url = 'https://bmi-roast-machine.vercel.app/';
+  document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+}
+
+function reroll() {
+  if (!currentResult) return;
+  const newInsult = pickInsult(currentResult.cat, currentResult.insult);
+  currentResult.insult = newInsult;
+  document.getElementById('insult').textContent = '"' + newInsult + '"';
+  const box = document.getElementById('result');
+  box.classList.remove('shake');
+  void box.offsetWidth;
+  box.classList.add('shake');
+
+  // Update share links
+  const text = `My BMI is ${currentResult.bmi} (${catLabels[currentResult.cat]}) 💀 "${newInsult}" — BMI Roast Machine`;
+  const url = 'https://bmi-roast-machine.vercel.app/';
+  document.getElementById('share-tw').href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+  document.getElementById('share-wa').href = `https://wa.me/?text=${encodeURIComponent(text + ' ' + url)}`;
+}
+
+function copyResult() {
+  if (!currentResult) return;
+  const text = `My BMI is ${currentResult.bmi} (${catLabels[currentResult.cat]}) 💀 "${currentResult.insult}" — BMI Roast Machine\nhttps://bmi-roast-machine.vercel.app/`;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = '✅ COPIED';
+    setTimeout(() => btn.textContent = '📋 COPY', 1500);
+  });
+}
+
+// Init
+renderInputs();
+</script>
+</body>
+</html>
